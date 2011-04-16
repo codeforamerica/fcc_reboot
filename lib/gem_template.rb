@@ -1,3 +1,0 @@
-module FCCReboot
-  # Your code goes here...
-end
