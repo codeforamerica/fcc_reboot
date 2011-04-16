@@ -1,7 +1,7 @@
-equire 'faraday'
-require 'open311/version'
+require 'faraday'
+require 'version'
 
-module Open311
+module FccReboot
   module Configuration
     VALID_OPTIONS_KEYS = [
       :adapter,

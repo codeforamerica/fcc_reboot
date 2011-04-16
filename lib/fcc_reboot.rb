@@ -1,5 +1,5 @@
-require 'fccreboot/configuration'
-require 'fccreboot/client'
+require ::File.expand_path('../fcc_reboot/configuration.rb', __FILE__)
+require 'fcc_reboot/client'
 
 module FccReboot
   extend Configuration
