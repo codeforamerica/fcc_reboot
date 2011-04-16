@@ -1,3 +1,3 @@
-module GemTemplate
+module FCCReboot
   # Your code goes here...
 end

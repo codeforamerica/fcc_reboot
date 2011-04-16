@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "gem_template/version"
+require "fcc_reboot/version"
 
 Gem::Specification.new do |s|
-  s.name        = "gem_template"
-  s.version     = GemTemplate::VERSION
+  s.name        = "fcc_reboot"
+  s.version     = FCCReboot::VERSION
   s.platform    = Gem::Platform::RUBY
   s.author      = "Code for America"
   s.email       = "info@codeforamerica.org"
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{TODO: Write a gem summary}
   s.description = %q{TODO: Write a gem description}
 
-  s.rubyforge_project = "gem_template"
+  s.rubyforge_project = "fcc_reboot"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
