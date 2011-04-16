@@ -1,5 +1,5 @@
-require 'fccreboot/configuration'
-require 'fccreboot/client'
+require 'fcc_reboot/configuration.rb'
+require 'fcc_reboot/client'
 
 module FccReboot
   extend Configuration

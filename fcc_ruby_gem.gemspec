@@ -4,7 +4,7 @@ require "fcc_reboot/version"
 
 Gem::Specification.new do |s|
   s.name        = "fcc_reboot"
-  s.version     = FCCReboot::VERSION
+  s.version     = FccReboot::VERSION
   s.platform    = Gem::Platform::RUBY
   s.author      = "Code for America"
   s.email       = "info@codeforamerica.org"

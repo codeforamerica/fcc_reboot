@@ -1,6 +1,6 @@
-require 'fccreboot/client/connection'
-require 'fccreboot/client/request'
-require 'fccreboot/client/service'
+require 'fcc_reboot/client/connection'
+require 'fcc_reboot/client/request'
+require 'fcc_reboot/client/service'
 
 module FccReboot
   class Client
