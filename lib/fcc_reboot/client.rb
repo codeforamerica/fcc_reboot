@@ -1,6 +1,6 @@
-require 'client/connection'
-require 'client/request'
-require 'client/service'
+require 'fcc_reboot/client/connection'
+require 'fcc_reboot/client/request'
+require 'fcc_reboot/client/broadband_test'
 
 module FccReboot
   class Client
@@ -16,6 +16,6 @@ module FccReboot
     include FccReboot::Client::Connection
     include FccReboot::Client::Request
 
-    include FccReboot::Client::Service
+    include FccReboot::Client::BroadbandTest
   end
 end
