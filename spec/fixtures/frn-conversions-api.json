@@ -1,0 +1,27 @@
+getList = {
+ "@executionTime": "4.31",
+ "@status": "OK",
+ "Frns": {"Frn": [
+  {
+   "frn": "0017855545",
+   "companyName": "Cygnus Telecommunications Corporation",
+   "holdingCompanyName": "Cygnus Telecommunications Corporation",
+   "regulationStatus": "N",
+   "modifyDate": "2010.07.30 15:23:02"
+  }
+ ]}
+}
+
+getInfo = {
+ "@executionTime": "0.014",
+ "@status": "OK",
+ "Info": {
+  "frn": "0017855545",
+  "companyName": "Cygnus Telecommunications Corporation",
+  "holdingCompanyName": "Cygnus Telecommunications Corporation",
+  "regulationStatus": "N",
+  "States": {"state": "IL"},
+  "TechnologyDescs": null,
+  "modifyDate": "2010.07.30 15:23:02"
+ }
+}
