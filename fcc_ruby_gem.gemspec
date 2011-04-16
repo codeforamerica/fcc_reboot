@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.author      = "Code for America"
   s.email       = "info@codeforamerica.org"
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{FCC API Wrapper}
+  s.description = %q{Wrapper for FCC API}
 
   s.rubyforge_project = "fcc_reboot"
 
