@@ -1,5 +1,4 @@
 require 'faraday'
-require 'version'
 
 module FccReboot
   module Configuration

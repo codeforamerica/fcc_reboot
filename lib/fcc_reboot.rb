@@ -1,3 +1,4 @@
+require 'fcc_reboot/version'
 require ::File.expand_path('../fcc_reboot/configuration.rb', __FILE__)
 require 'fcc_reboot/client'
 
