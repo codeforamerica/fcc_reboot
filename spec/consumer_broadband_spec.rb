@@ -7,7 +7,7 @@ describe FccReboot, ".find" do
   end
 
   it "should request the correct resource" do
-    FccReboot.find({:latitude => '38.0', :longitude => '-77.5'})
+    FccReboot::Client::BroadbandTest.find({:latitude => '38.0', :longitude => '-77.5'})
     a_request(:get, 'http://data.fcc.gov/api/speedtest/find').
     with(:query => {:latitude => '38.0', :longitude => '-77.5'}).
     should have_been_made

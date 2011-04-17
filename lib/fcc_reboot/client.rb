@@ -1,6 +1,6 @@
-require 'fcc_reboot/client/connection'
-require 'fcc_reboot/client/request'
-require 'fcc_reboot/client/broadband_test'
+require ::File.expand_path('../client/connection', __FILE__)
+require ::File.expand_path('../client/request', __FILE__)
+require ::File.expand_path('../client/broadband_test.rb', __FILE__)
 
 module FccReboot
   class Client
@@ -15,7 +15,7 @@ module FccReboot
 
     include FccReboot::Client::Connection
     include FccReboot::Client::Request
+    include FccReboot::Client::BroadbandTest  
 
-    include FccReboot::Client::BroadbandTest
   end
 end
