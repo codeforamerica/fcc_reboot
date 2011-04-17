@@ -159,6 +159,29 @@ describe FccReboot, ".get_licenses" do
   end
 end
 
+describe FccReboot, ".get_common_names" do
+  before do
+    @query = {:commonName => 'Sprint%20Nextel', :limit => '10'}
+    @url = 'http://data.fcc.gov/api/license-view/licenses/getCommonNames'
+    stub_request(:get, @url).
+      with(:query => @query).
+      to_return(:body => fixture('license-view-get-common-names.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.get_common_names(@query)
+    a_request(:get, @url).
+      with(:query => @query).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    common_names = FccReboot.get_common_names(@query)
+    common_names.should be_a Array
+    common_names[0]["statCount"].should == '11989'
+  end
+end
+
 describe FccReboot, ".get_issued" do
   before do
     @query = {:commonName => 'Sprint%Nextel', :format => 'json'}

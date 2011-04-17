@@ -121,7 +121,11 @@ module FccReboot
         response = get('license-view/basicSearch/getLicenses', options)
         JSON.parse(response)["Licenses"]["License"]
       end
-      
+
+      def get_common_names(options={})
+        response = get('license-view/licenses/getCommonNames', options)
+        JSON.parse(response)['Stats']['Stat']
+      end
       
       # This API returns the number of licenses that were issued by the Commission on a yearly basis. 
       #The data returned includes the year and the total number of licenses issued.
