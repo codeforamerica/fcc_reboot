@@ -158,3 +158,25 @@ describe FccReboot, ".get_licenses" do
     licenses[0]["licenseID"].should == '2300007967'
   end
 end
+
+describe FccReboot, ".get_issued" do
+  before do
+    @query = {:commonName => 'Sprint%Nextel', :format => 'json'}
+    stub_request(:get, 'http://data.fcc.gov/api/license-view/licenses/getIssued').
+      with(:query => @query).
+      to_return(:body => fixture('get_issued.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.get_issued(@query)
+    a_request(:get, 'http://data.fcc.gov/api/license-view/licenses/getIssued').
+      with(:query => @query).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    licenses = FccReboot.get_issued(@query)
+    licenses.should be_a Array
+    licenses[0]["statDesc"].should == '2001'
+  end
+end
