@@ -136,3 +136,24 @@ describe FccReboot, ".get_spectrum_licenses" do
   end
 end
 
+describe FccReboot, ".get_licenses" do
+  before do
+    @query = {:searchValue => 'Verizon%20Wireless'}
+    stub_request(:get, 'http://data.fcc.gov/api/license-view/basicSearch/getLicenses').
+      with(:query => @query).
+      to_return(:body => fixture('license-view-get-licenses.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.get_licenses(@query)
+    a_request(:get, 'http://data.fcc.gov/api/license-view/basicSearch/getLicenses').
+      with(:query => @query).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    licenses = FccReboot.get_licenses(@query)
+    licenses.should be_a Array
+    licenses[0]["licenseID"].should == '2300007967'
+  end
+end
