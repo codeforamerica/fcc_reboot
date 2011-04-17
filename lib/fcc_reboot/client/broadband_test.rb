@@ -11,7 +11,7 @@ module FccReboot
       # @example Provide a list of acceptable 311 service request types and their associated service codes
       #   Open311.service_list
       def find(options={})
-        response = get('find', options)
+        response = get('speedtest/find', options)
         unpack_if_xml(response) do
           response['result']
         end
