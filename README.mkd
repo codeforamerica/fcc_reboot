@@ -35,6 +35,9 @@ Usage Examples
     # Returns the number of licenses up for renewal in a given month for Sprint Nextel.
     FccReboot.get_issued(:commonName=> 'Sprint Nextel')
     
+    # Returns the counts and percent distribution of active licenses by entity type
+    FccReboot.get_renewals()
+    
 Contributing
 ------------
 In the spirit of [free software](http://www.fsf.org/licensing/essays/free-sw.html), **everyone** is encouraged to help improve this project.
