@@ -12,7 +12,7 @@ module FccReboot
           # :headers => {'Accept' => "*/#{format}", 'User-Agent' => user_agent},
           :proxy => proxy,
           :ssl => {:verify => false},
-          :url => endpoint
+          :url => 'http://data.fcc.gov/api/' + endpoint.to_s
         }
 
         Faraday::Connection.new(options) do |connection|

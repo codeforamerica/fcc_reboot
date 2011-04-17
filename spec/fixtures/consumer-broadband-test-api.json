@@ -1,14 +1,1 @@
-find = {"SpeedTestCounty": {
- "wirelineMaxDownload": "17773.0",
- "wirelineMaxUpload": "18680.0",
- "wirelineAvgDownload": "9072.4",
- "wirelineAvgUpload": "4562.2",
- "wirelessMaxDownload": "14490.0",
- "wirelessMaxUpload": "11180.0",
- "wirelessAvgDownload": "9146.5",
- "wirelessAvgUpload": "6498.5",
- "wirelineTests": "66",
- "wirelessTests": "13"},
-status: "OK",
-executionTime: "0.093"
-}
+{"SpeedTestCounty":{"wirelineMaxDownload":17773.0,"wirelineMaxUpload":18680.0,"wirelineAvgDownload":9072.4,"wirelineAvgUpload":4562.2,"wirelessMaxDownload":14490.0,"wirelessMaxUpload":11180.0,"wirelessAvgDownload":9146.5,"wirelessAvgUpload":6498.5,"wirelineTests":66,"wirelessTests":21},"status":"OK","executionTime":"0.156"}
