@@ -38,6 +38,12 @@ Usage Examples
     # Returns the counts and percent distribution of active licenses by entity type
     FccReboot.get_renewals()
     
+    # Provide number of licenses that were issued by the Commission on a yearly basis
+    FccReboot.get_licenses(:searchValue => 'Verizon Wireless')
+    
+    # Returns the license counts and percent distribution by status.
+    FccReboot.get_statuses(:commonName => 'Sprint Nextel')
+    
 Contributing
 ------------
 In the spirit of [free software](http://www.fsf.org/licensing/essays/free-sw.html), **everyone** is encouraged to help improve this project.

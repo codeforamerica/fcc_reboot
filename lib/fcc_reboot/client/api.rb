@@ -116,17 +116,51 @@ module FccReboot
         JSON.parse(response)["Licenses"]["License"]        
       end
       
+      # his API returns high level license information including name, FRN, call sign, 
+      # category, service, status, expiration date and license id, based on the search criteria passed. 
+      # @format :json
+      # @key false
+      # @param options [Hash] A customizable set of options:
+      # searchValue (Required)
+      # pageNum (Optional) – Default is 1.
+      # sortColumn (Optional) – Default is licName. Valid values are: licName, frn, callsign, service, status, expdate
+      # sortOrder (Optional) – Default is asc. Valid values are: asc, desc
+      # pageSize (Optional) – Default is 100.
+      # @return [Array]
+      # @see http://reboot.fcc.gov/developer/license-view-api
+      # @example Provide number of licenses that were issued by the Commission on a yearly basis
+      #   FccReboot.get_licenses(:searchValue => 'Verizon Wireless')
       def get_licenses(options={})
         options.merge!({:format => "json"})        
         response = get('license-view/basicSearch/getLicenses', options)
         JSON.parse(response)["Licenses"]["License"]
       end
 
+      # This API returns a list of currently known licensee names associated with a common name.
+      # @format :json
+      # @key false
+      # @param options [Hash] A customizable set of options:
+      # commonName (Optional)
+      # limit (Optional) – Number of request rows
+      # @return [Array]
+      # @see http://reboot.fcc.gov/developer/license-view-api
+      # @example Returns a list of currently known licensee names associated with a common name.
+      #   FccReboot.get_common_names(:commonName => 'Sprint Nextel')
       def get_common_names(options={})
         response = get('license-view/licenses/getCommonNames', options)
         JSON.parse(response)['Stats']['Stat']
       end
       
+      # This API returns the license counts and percent distribution by status.
+      # @format :json
+      # @key false
+      # @param options [Hash] A customizable set of options:
+      # commonName (Optional)
+      # limit (Optional) – Number of request rows
+      # @return [Array]
+      # @see http://reboot.fcc.gov/developer/license-view-api
+      # @example Returns the license counts and percent distribution by status.
+      #   FccReboot.get_statuses(:commonName => 'Sprint Nextel')
       def get_statuses(options={})
         response = get('license-view/licenses/getStatuses', options)
         JSON.parse(response)['Stats']['Stat']
