@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "fcc_reboot"
   s.version     = FccReboot::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.author      = "Code for America"
+  s.authors      = ["Dan Melton", "Javier"]
   s.email       = "info@codeforamerica.org"
   s.homepage    = ""
   s.summary     = %q{FCC API Wrapper}
