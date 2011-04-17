@@ -23,6 +23,15 @@ Usage Examples
     # Provide speed test statistics for a US County given the passed Latitude and Longitude
     FccReboot.get_license(:name=> 'AT', :radioservice=>'Cellular')
     
+    # Provide census block info for the given latitude and longitude
+    FccReboot.find_census_block(:latitude => '38.0', :longitude => '-77.5')
+    
+    # Provide FRN list for the state of Illinois
+    FccReboot.frn_getlist(:stateCode => 'IL', :multi => 'No')
+    
+    # Provide FRN info for Cygnus Telecommunications Corporation (FRN number 0017855545)
+    FccReboot.find_census_block(:frn => '0017855545')
+    
 Contributing
 ------------
 In the spirit of [free software](http://www.fsf.org/licensing/essays/free-sw.html), **everyone** is encouraged to help improve this project.

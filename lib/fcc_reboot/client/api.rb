@@ -14,6 +14,7 @@ module FccReboot
       #   FccReboot.broadband_test(:latitude => '38.0', :longitude => '-77.5')
       def broadband_test(options={})
         response = get('speedtest/find', options)
+        options.merge({:format => "json"})        
         JSON.parse(response)["SpeedTestCounty"]
       end
       
@@ -59,7 +60,7 @@ module FccReboot
       # @return [Hash]
       # @see http://reboot.fcc.gov/developer/frn-conversions-api
       # @example Provide FRN info for Cygnus Telecommunications Corporation (FRN number 0017855545)
-      #   FccReboot.find_census_block({:frn => '0017855545'})
+      #   FccReboot.frn_getinfo(:frn => '0017855545')
       def frn_getinfo(options={})
         options.merge({:format => "json"})
         response = get('frn/getInfo', options)
@@ -86,6 +87,7 @@ module FccReboot
       #   FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
       def get_spectrum_bands(options={})
         response = get('spectrum-view/services/advancedSearch/getSpectrumBands', options)
+        options.merge({:format => "json"})        
         JSON.parse(response)["SpectrumBands"]["SpectrumBand"]        
       end
       
@@ -109,6 +111,7 @@ module FccReboot
       #   FccReboot.get_license(:name=> 'AT', :radioservice=>'Cellular')
       def get_spectrum_licenses(options={})
         response = get('spectrum-view/services/advancedSearch/getLicenses', options)
+        options.merge({:format => "json"})
         JSON.parse(response)["Licenses"]["License"]        
       end
       
