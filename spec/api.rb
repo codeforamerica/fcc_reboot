@@ -270,3 +270,25 @@ describe FccReboot, ".get_entities" do
     licenses[0]["statDesc"].should == 'Individual'
   end
 end
+
+describe FccReboot, ".get_categories" do
+  before do
+    @query = {:commonName => 'Sprint%Nextel', :limit=>"10", :format => 'json'}
+    stub_request(:get, 'http://data.fcc.gov/api/license-view/licenses/getCategories').
+      with(:query => @query).
+      to_return(:body => fixture('get_entities.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.get_categories(@query)
+    a_request(:get, 'http://data.fcc.gov/api/license-view/licenses/getCategories').
+      with(:query => @query).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    licenses = FccReboot.get_categories(@query)
+    licenses.should be_a Array
+    licenses[0]["statDesc"].should == 'Individual'
+  end
+end

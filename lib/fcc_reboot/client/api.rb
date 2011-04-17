@@ -177,6 +177,21 @@ module FccReboot
           response = get('license-view/licenses/getEntities', options)
           JSON.parse(response)["Stats"]["Stat"]
         end
+        
+        # This API returns the counts and percent distribution of active licenses by entity type. 
+         # There are four entity categories: Individual, Business, Government and Other.
+          # @format :json
+          # @key false
+          # @param options [Hash] A customizable set of options:
+          # @return [Array]
+          # @see http://reboot.fcc.gov/developer/license-view-api
+          # @example Returns the counts and percent distribution of active licenses by entity type
+          #   FccReboot.get_renewals()
+          def get_categories(options={})
+            options.merge!({:format => "json"})
+            response = get('license-view/licenses/getCategories', options)
+            JSON.parse(response)["Stats"]["Stat"]
+          end
     end
   end
 end
