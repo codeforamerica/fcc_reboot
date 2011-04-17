@@ -69,8 +69,8 @@ describe FccReboot, ".frn_getlist" do
 
   it "should return the correct results" do
     services = FccReboot.frn_getlist(:stateCode => 'IL', :multi => false)
-    services.should be_a Hash
-    services["Frns"]["Frn"].first["frn"].should == '0017855545'
+    services.should be_a Array
+    services.first["frn"].should == '0017855545'
   end
 end
 
@@ -91,7 +91,7 @@ describe FccReboot, ".frn_getinfo" do
   it "should return the correct results" do
     services = FccReboot.frn_getinfo(:frn => '0017855545')
     services.should be_a Hash
-    services["Info"]["frn"].should == '0017855545'
+    services["frn"].should == '0017855545'
   end
 end
 

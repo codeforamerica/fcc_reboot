@@ -58,7 +58,9 @@ module FccReboot
         options[:multi] = options[:multi] ? "Yes" : "No"
         options.merge!({:format => "json"})
         response = get('frn/getList', options)
-        JSON.parse(response)
+        if_not_error response do |json|    
+          json["Frns"]["Frn"]
+        end
       end
       
       # This API returns information about a provider by FRN number.
@@ -74,7 +76,9 @@ module FccReboot
       def frn_getinfo(options={})
         options.merge!({:format => "json"})
         response = get('frn/getInfo', options)
-        JSON.parse(response)
+        if_not_error response do |json|    
+          json["Info"]
+        end
       end
       
       # This API accepts a frequency range and returns a list of the frequency bands 
