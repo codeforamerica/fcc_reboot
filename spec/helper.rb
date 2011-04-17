@@ -2,7 +2,7 @@ require 'simplecov'
 SimpleCov.start
 require File.expand_path('../../lib/fcc_reboot', __FILE__)
 require 'rspec'
-require 'webmock'
+require 'webmock/rspec'
 
 require 'fcc_reboot'
 
