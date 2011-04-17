@@ -139,7 +139,7 @@ end
 
 describe FccReboot, ".get_licenses" do
   before do
-    @query = {:searchValue => 'Verizon%20Wireless'}
+    @query = {:searchValue => 'Verizon%20Wireless', :format =>'json'}
     stub_request(:get, 'http://data.fcc.gov/api/license-view/basicSearch/getLicenses').
       with(:query => @query).
       to_return(:body => fixture('license-view-get-licenses.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
