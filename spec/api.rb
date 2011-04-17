@@ -2,14 +2,15 @@ require 'helper'
 
 describe FccReboot, ".broadband_test" do
   before do
-    stub_request(:get, 'http://data.fcc.gov/api/speedtest/find?latitude=38.0&longitude=-77.5').
+    stub_request(:get, 'http://data.fcc.gov/api/speedtest/find').
+    with(:query => {:format => 'json', :latitude => '38.0', :longitude => '-77.5'}).
     to_return(:body => fixture('broadband_test.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
   end
 
   it "should request the correct resource" do
     FccReboot.broadband_test({:latitude => '38.0', :longitude => '-77.5'})
     a_request(:get, 'http://data.fcc.gov/api/speedtest/find').
-    with(:query => {:latitude => '38.0', :longitude => '-77.5'}).
+    with(:query => {:format => 'json', :latitude => '38.0', :longitude => '-77.5'}).
     should have_been_made
   end
 
@@ -24,14 +25,14 @@ end
 describe FccReboot, ".census_block" do
   before do
     stub_request(:get, 'http://data.fcc.gov/api/block/find').
-      with(:query => {:latitude => '38.0', :longitude => '-77.5'}).
+      with(:query => {:format => 'json', :latitude => '38.0', :longitude => '-77.5'}).
       to_return(:body => fixture('census-block-conversions-api.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
   end
 
   it "should request the correct resource" do
     FccReboot.find_census_block(:latitude => '38.0', :longitude => '-77.5')
     a_request(:get, 'http://data.fcc.gov/api/block/find').
-      with(:query => {:latitude => '38.0', :longitude => '-77.5'}).
+      with(:query => {:format => 'json', :latitude => '38.0', :longitude => '-77.5'}).
       should have_been_made
   end
 
@@ -45,24 +46,24 @@ end
 describe FccReboot, ".frn_getlist" do
   before do
     stub_request(:get, 'http://data.fcc.gov/api/frn/getList').
-      with(:query => {:stateCode => 'IL', :multi => 'Yes'}).
+      with(:query => {:format => 'json', :stateCode => 'IL', :multi => 'Yes'}).
       to_return(:body => fixture('frn-conversions-getlist.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
     stub_request(:get, 'http://data.fcc.gov/api/frn/getList').
-      with(:query => {:stateCode => 'IL', :multi => 'No'}).
+      with(:query => {:format => 'json', :stateCode => 'IL', :multi => 'No'}).
       to_return(:body => fixture('frn-conversions-getlist.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
   end
 
   it "should request the correct resource" do
     FccReboot.frn_getlist(:stateCode => 'IL', :multi => true)
     a_request(:get, 'http://data.fcc.gov/api/frn/getList').
-      with(:query => {:stateCode => 'IL', :multi => 'Yes'}).
+      with(:query => {:format => 'json', :stateCode => 'IL', :multi => 'Yes'}).
       should have_been_made
   end
   
   it "should request the correct resource" do
     FccReboot.frn_getlist(:stateCode => 'IL', :multi => false)
     a_request(:get, 'http://data.fcc.gov/api/frn/getList').
-      with(:query => {:stateCode => 'IL', :multi => 'No'}).
+      with(:query => {:format => 'json', :stateCode => 'IL', :multi => 'No'}).
       should have_been_made
   end
 
@@ -76,14 +77,14 @@ end
 describe FccReboot, ".frn_getinfo" do
   before do
     stub_request(:get, 'http://data.fcc.gov/api/frn/getInfo').
-      with(:query => {:frn => '0017855545'}).
+      with(:query => {:format => 'json', :frn => '0017855545'}).
       to_return(:body => fixture('frn-conversions-getinfo.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
   end
 
   it "should request the correct resource" do
     FccReboot.frn_getinfo(:frn => '0017855545')
     a_request(:get, 'http://data.fcc.gov/api/frn/getInfo').
-      with(:query => {:frn => '0017855545'}).
+      with(:query => {:format => 'json', :frn => '0017855545'}).
       should have_been_made
   end
   
@@ -97,14 +98,14 @@ end
 describe FccReboot, ".get_spectrum_bands" do
   before do
     stub_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getSpectrumBands').
-      with(:query => {:frequencyFrom=>'226', :frequencyTo => '900'}).
+      with(:query => {:format => 'json', :frequencyFrom=>'226', :frequencyTo => '900'}).
       to_return(:body => fixture('get_spectrum_bands.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
   end
 
   it "should request the correct resource" do
     FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
     a_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getSpectrumBands').
-      with(:query => {:frequencyFrom=>'226', :frequencyTo => '900'}).
+      with(:query => {:format => 'json', :frequencyFrom=>'226', :frequencyTo => '900'}).
       should have_been_made
   end
 
@@ -118,14 +119,14 @@ end
 describe FccReboot, ".get_spectrum_licenses" do
   before do
     stub_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getLicenses').
-      with(:query => {:name=> 'AT', :radioservice=>'Cellular'}).
+      with(:query => {:format => 'json', :name=> 'AT', :radioservice=>'Cellular'}).
       to_return(:body => fixture('get_licenses.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
   end
 
   it "should request the correct resource" do
     FccReboot.get_spectrum_licenses(:name=> 'AT', :radioservice=>'Cellular')
     a_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getLicenses').
-      with(:query => {:name=> 'AT', :radioservice=>'Cellular'}).
+      with(:query => {:format => 'json', :name=> 'AT', :radioservice=>'Cellular'}).
       should have_been_made
   end
 

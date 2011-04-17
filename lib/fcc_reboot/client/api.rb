@@ -13,8 +13,8 @@ module FccReboot
       # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
       #   FccReboot.broadband_test(:latitude => '38.0', :longitude => '-77.5')
       def broadband_test(options={})
+        options.merge!({:format => "json"})                
         response = get('speedtest/find', options)
-        options.merge({:format => "json"})        
         JSON.parse(response)["SpeedTestCounty"]
       end
       
@@ -30,7 +30,7 @@ module FccReboot
       # @example Provide census block info for the given latitude and longitude
       #   FccReboot.find_census_block({:latitude => '38.0', :longitude => '-77.5'})
       def find_census_block(options={})
-        options.merge({:format => "json"})
+        options.merge!({:format => "json"})
         response = get('block/find', options)
         JSON.parse(response)
       end
@@ -47,7 +47,7 @@ module FccReboot
       #   FccReboot.frn_getlist({:stateCode => 'IL', :multi => 'No'})
       def frn_getlist(options={})
         options[:multi] = options[:multi] ? "Yes" : "No"
-        options.merge({:format => "json"})
+        options.merge!({:format => "json"})
         response = get('frn/getList', options)
         JSON.parse(response)
       end
@@ -62,7 +62,7 @@ module FccReboot
       # @example Provide FRN info for Cygnus Telecommunications Corporation (FRN number 0017855545)
       #   FccReboot.frn_getinfo(:frn => '0017855545')
       def frn_getinfo(options={})
-        options.merge({:format => "json"})
+        options.merge!({:format => "json"})
         response = get('frn/getInfo', options)
         JSON.parse(response)
       end
@@ -86,8 +86,8 @@ module FccReboot
       # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
       #   FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
       def get_spectrum_bands(options={})
-        response = get('spectrum-view/services/advancedSearch/getSpectrumBands', options)
-        options.merge({:format => "json"})        
+        options.merge!({:format => "json"})          
+        response = get('spectrum-view/services/advancedSearch/getSpectrumBands', options)      
         JSON.parse(response)["SpectrumBands"]["SpectrumBand"]        
       end
       
@@ -110,8 +110,8 @@ module FccReboot
       # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
       #   FccReboot.get_license(:name=> 'AT', :radioservice=>'Cellular')
       def get_spectrum_licenses(options={})
+        options.merge!({:format => "json"})
         response = get('spectrum-view/services/advancedSearch/getLicenses', options)
-        options.merge({:format => "json"})
         JSON.parse(response)["Licenses"]["License"]        
       end
       
