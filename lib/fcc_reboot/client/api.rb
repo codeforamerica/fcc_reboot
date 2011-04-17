@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'JSON'
 
 module FccReboot
@@ -115,6 +116,10 @@ module FccReboot
         JSON.parse(response)["Licenses"]["License"]        
       end
       
+      def get_licenses(options={})
+        response = get('license-view/basicSearch/getLicenses', options)
+        JSON.parse(response)["Licenses"]["License"]
+      end
     end
   end
 end
