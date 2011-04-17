@@ -127,6 +127,11 @@ module FccReboot
         JSON.parse(response)['Stats']['Stat']
       end
       
+      def get_statuses(options={})
+        response = get('license-view/licenses/getStatuses', options)
+        JSON.parse(response)['Stats']['Stat']
+      end
+
       # This API returns the number of licenses that were issued by the Commission on a yearly basis. 
       #The data returned includes the year and the total number of licenses issued.
       # @format :json
