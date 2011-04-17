@@ -10,7 +10,7 @@ module FccReboot
       # @see http://wiki.open311.org/GeoReport_v2#GET_Service_List
       # @example Provide a list of acceptable 311 service request types and their associated service codes
       #   Open311.service_list
-      def self.find(options={})
+      def test(options={})
         response = get('speedtest/find', options)
         unpack_if_xml(response) do
           response['result']
