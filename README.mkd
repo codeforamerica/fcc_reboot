@@ -21,7 +21,7 @@ Usage Examples
     FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
     
     # Provide high level overview of who owns spectrum across the country within the 225 MHz to 3700 MHz frequency
-    FccReboot.get_license(:name=> 'AT', :radioservice=>'Cellular')
+    FccReboot.get_spectrum_licenses(:name=> 'AT', :radioservice=>'Cellular')
     
     # Provide census block info for the given latitude and longitude
     FccReboot.find_census_block(:latitude => '38.0', :longitude => '-77.5')

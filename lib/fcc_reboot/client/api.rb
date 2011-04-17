@@ -147,6 +147,7 @@ module FccReboot
       # @example Returns a list of currently known licensee names associated with a common name.
       #   FccReboot.get_common_names(:commonName => 'Sprint Nextel')
       def get_common_names(options={})
+        options.merge!({:format => "json"})        
         response = get('license-view/licenses/getCommonNames', options)
         JSON.parse(response)['Stats']['Stat']
       end
@@ -162,6 +163,7 @@ module FccReboot
       # @example Returns the license counts and percent distribution by status.
       #   FccReboot.get_statuses(:commonName => 'Sprint Nextel')
       def get_statuses(options={})
+        options.merge!({:format => "json"})        
         response = get('license-view/licenses/getStatuses', options)
         JSON.parse(response)['Stats']['Stat']
       end
