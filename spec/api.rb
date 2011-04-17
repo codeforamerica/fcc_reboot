@@ -42,3 +42,55 @@ describe FccReboot, ".census_block" do
   end
 end
 
+describe FccReboot, ".frn_getlist" do
+  before do
+    stub_request(:get, 'http://data.fcc.gov/api/frn/getList').
+      with(:query => {:stateCode => 'IL', :multi => 'Yes'}).
+      to_return(:body => fixture('frn-conversions-getlist.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+    stub_request(:get, 'http://data.fcc.gov/api/frn/getList').
+      with(:query => {:stateCode => 'IL', :multi => 'No'}).
+      to_return(:body => fixture('frn-conversions-getlist.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.frn_getlist(:stateCode => 'IL', :multi => true)
+    a_request(:get, 'http://data.fcc.gov/api/frn/getList').
+      with(:query => {:stateCode => 'IL', :multi => 'Yes'}).
+      should have_been_made
+  end
+  
+  it "should request the correct resource" do
+    FccReboot.frn_getlist(:stateCode => 'IL', :multi => false)
+    a_request(:get, 'http://data.fcc.gov/api/frn/getList').
+      with(:query => {:stateCode => 'IL', :multi => 'No'}).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    services = FccReboot.frn_getlist(:stateCode => 'IL', :multi => false)
+    services.should be_a Hash
+    services["Frns"]["Frn"].first["frn"].should == '0017855545'
+  end
+end
+
+describe FccReboot, ".frn_getinfo" do
+  before do
+    stub_request(:get, 'http://data.fcc.gov/api/frn/getInfo').
+      with(:query => {:frn => '0017855545'}).
+      to_return(:body => fixture('frn-conversions-getinfo.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.frn_getinfo(:frn => '0017855545')
+    a_request(:get, 'http://data.fcc.gov/api/frn/getInfo').
+      with(:query => {:frn => '0017855545'}).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    services = FccReboot.frn_getinfo(:frn => '0017855545')
+    services.should be_a Hash
+    services["Info"]["frn"].should == '0017855545'
+  end
+end
+

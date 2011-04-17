@@ -18,10 +18,23 @@ module FccReboot
       end
       
       def find_census_block(options={})
+        options.merge({:format => "json"})
         response = get('block/find', options)
         JSON.parse(response)
       end
 
+      def frn_getlist(options={})
+        options[:multi] = options[:multi] ? "Yes" : "No"
+        options.merge({:format => "json"})
+        response = get('frn/getList', options)
+        JSON.parse(response)
+      end
+      
+      def frn_getinfo(options={})
+        options.merge({:format => "json"})
+        response = get('frn/getInfo', options)
+        JSON.parse(response)
+      end
       
     end
   end
