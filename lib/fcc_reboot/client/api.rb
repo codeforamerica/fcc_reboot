@@ -11,7 +11,7 @@ module FccReboot
       # @return [Array]
       # @see http://reboot.fcc.gov/developer/consumer-broadband-test-api
       # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
-      #   FccReboot.broadband_test({:latitude => '38.0', :longitude => '-77.5'})
+      #   FccReboot.broadband_test(:latitude => '38.0', :longitude => '-77.5')
       def broadband_test(options={})
         response = get('speedtest/find', options)
         JSON.parse(response)["SpeedTestCounty"]
