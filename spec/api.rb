@@ -161,7 +161,7 @@ end
 
 describe FccReboot, ".get_common_names" do
   before do
-    @query = {:commonName => 'Sprint%20Nextel', :limit => '10'}
+    @query = {:commonName => 'Sprint%20Nextel', :limit => '10', :format => 'json'}
     @url = 'http://data.fcc.gov/api/license-view/licenses/getCommonNames'
     stub_request(:get, @url).
       with(:query => @query).
@@ -184,7 +184,7 @@ end
 
 describe FccReboot, ".get_statuses" do
   before do
-    @query = {:commonName => 'Sprint%20Nextel', :limit => '10'}
+    @query = {:commonName => 'Sprint%20Nextel', :limit => '10', :format => 'json'}
     @url = 'http://data.fcc.gov/api/license-view/licenses/getStatuses'
     stub_request(:get, @url).
       with(:query => @query).
