@@ -84,7 +84,7 @@ module FccReboot
       # jsonCallback (Optional) – Default value is callback.
       # @return [Array]
       # @see http://reboot.fcc.gov/developer/spectrum-dashboard-api
-      # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
+      # @example Returns a list of the frequency bands 
       #   FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
       def get_spectrum_bands(options={})
         options.merge!({:format => "json"})          
@@ -108,7 +108,7 @@ module FccReboot
       # format (Optional) – Default value is xml. Valid values are: xml, json, jsonp
       # @return [Array]
       # @see http://reboot.fcc.gov/developer/spectrum-dashboard-api
-      # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
+      # @example Provide high level overview of who owns spectrum across the country within the 225 MHz to 3700 MHz frequency
       #   FccReboot.get_license(:name=> 'AT', :radioservice=>'Cellular')
       def get_spectrum_licenses(options={})
         options.merge!({:format => "json"})
@@ -131,13 +131,28 @@ module FccReboot
       # commonName - Name of the coporation
       # @return [Array]
       # @see http://reboot.fcc.gov/developer/license-view-api
-      # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
+      # @example Provide number of licenses that were issued by the Commission on a yearly basis
       #   FccReboot.get_issued(:commonName=> 'Sprint Nextel')
       def get_issued(options={})
         options.merge!({:format => "json"})
         response = get('license-view/licenses/getIssued', options)
         JSON.parse(response)["Stats"]["Stat"]
       end
+      
+      # This API returns the number of licenses up for renewal in a given month. The API returns 12 months worth of data.
+       # @format :json
+       # @key false
+       # @param options [Hash] A customizable set of options:
+       # commonName - Name of the coporation
+       # @return [Array]
+       # @see http://reboot.fcc.gov/developer/license-view-api
+       # @example Returns the number of licenses up for renewal in a given month. The API returns 12 months worth of data for Sprint Nextel.
+       #   FccReboot.get_renewals(:commonName=> 'Sprint Nextel')
+       def get_renewals(options={})
+         options.merge!({:format => "json"})
+         response = get('license-view/licenses/getRenewals', options)
+         JSON.parse(response)["Stats"]["Stat"]
+       end
     end
   end
 end

@@ -17,10 +17,10 @@ Usage Examples
     # Provide speed test statistics for a US County given the passed Latitude and Longitude
     FccReboot.broadband_test(:latitude => '38.0', :longitude => '-77.5')
     
-    # Provide speed test statistics for a US County given the passed Latitude and Longitude
+    # Returns a list of the frequency bands 
     FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
     
-    # Provide speed test statistics for a US County given the passed Latitude and Longitude
+    # Provide high level overview of who owns spectrum across the country within the 225 MHz to 3700 MHz frequency
     FccReboot.get_license(:name=> 'AT', :radioservice=>'Cellular')
     
     # Provide census block info for the given latitude and longitude
@@ -32,7 +32,7 @@ Usage Examples
     # Provide FRN info for Cygnus Telecommunications Corporation (FRN number 0017855545)
     FccReboot.find_census_block(:frn => '0017855545')
     
-    # Provide speed test statistics for a US County given the passed Latitude and Longitude
+    # Returns the number of licenses up for renewal in a given month for Sprint Nextel.
     FccReboot.get_issued(:commonName=> 'Sprint Nextel')
     
 Contributing

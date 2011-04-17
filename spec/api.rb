@@ -180,3 +180,25 @@ describe FccReboot, ".get_issued" do
     licenses[0]["statDesc"].should == '2001'
   end
 end
+
+describe FccReboot, ".get_renewals" do
+  before do
+    @query = {:commonName => 'Sprint%Nextel', :format => 'json'}
+    stub_request(:get, 'http://data.fcc.gov/api/license-view/licenses/getRenewals').
+      with(:query => @query).
+      to_return(:body => fixture('get_renewals.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.get_renewals(@query)
+    a_request(:get, 'http://data.fcc.gov/api/license-view/licenses/getRenewals').
+      with(:query => @query).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    licenses = FccReboot.get_renewals(@query)
+    licenses.should be_a Array
+    licenses[0]["statDesc"].should == '201104'
+  end
+end
