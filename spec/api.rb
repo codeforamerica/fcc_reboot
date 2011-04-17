@@ -115,7 +115,7 @@ describe FccReboot, ".get_spectrum_bands" do
   end
 end
 
-describe FccReboot, ".get_licenses" do
+describe FccReboot, ".get_spectrum_licenses" do
   before do
     stub_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getLicenses').
       with(:query => {:name=> 'AT', :radioservice=>'Cellular'}).
@@ -123,14 +123,14 @@ describe FccReboot, ".get_licenses" do
   end
 
   it "should request the correct resource" do
-    FccReboot.get_licenses(:name=> 'AT', :radioservice=>'Cellular')
+    FccReboot.get_spectrum_licenses(:name=> 'AT', :radioservice=>'Cellular')
     a_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getLicenses').
       with(:query => {:name=> 'AT', :radioservice=>'Cellular'}).
       should have_been_made
   end
 
   it "should return the correct results" do
-    services = FccReboot.get_licenses(:name=> 'AT', :radioservice=>'Cellular')
+    services = FccReboot.get_spectrum_licenses(:name=> 'AT', :radioservice=>'Cellular')
     services.should be_a Array
     services[0]["id"].should == "11538"
   end

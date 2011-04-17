@@ -77,7 +77,7 @@ module FccReboot
       # @see http://reboot.fcc.gov/developer/spectrum-dashboard-api
       # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
       #   FccReboot.get_license(:name=> 'AT', :radioservice=>'Cellular')
-      def get_licenses(options={})
+      def get_spectrum_licenses(options={})
         response = get('spectrum-view/services/advancedSearch/getLicenses', options)
         JSON.parse(response)["Licenses"]["License"]        
       end
