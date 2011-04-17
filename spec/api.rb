@@ -3,7 +3,7 @@ require 'helper'
 describe FccReboot, ".broadband_test" do
   before do
     stub_request(:get, 'http://data.fcc.gov/api/speedtest/find?latitude=38.0&longitude=-77.5').
-    to_return(:body => fixture('consumer-broadband-test-api.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+    to_return(:body => fixture('broadband_test.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
   end
 
   it "should request the correct resource" do
@@ -86,11 +86,32 @@ describe FccReboot, ".frn_getinfo" do
       with(:query => {:frn => '0017855545'}).
       should have_been_made
   end
-
+  
   it "should return the correct results" do
     services = FccReboot.frn_getinfo(:frn => '0017855545')
     services.should be_a Hash
     services["Info"]["frn"].should == '0017855545'
+  end
+end
+
+describe FccReboot, ".get_spectrum_bands" do
+  before do
+    stub_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getSpectrumBands').
+      with(:query => {:frequencyFrom=>'226', :frequencyTo => '900'}).
+      to_return(:body => fixture('get_spectrum_bands.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
+    a_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getSpectrumBands').
+      with(:query => {:frequencyFrom=>'226', :frequencyTo => '900'}).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    services = FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
+    services.should be_a Array
+    services[0]["upperBand"].should == "235"
   end
 end
 
