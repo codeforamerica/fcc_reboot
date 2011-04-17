@@ -117,8 +117,26 @@ module FccReboot
       end
       
       def get_licenses(options={})
+        options.merge!({:format => "json"})        
         response = get('license-view/basicSearch/getLicenses', options)
         JSON.parse(response)["Licenses"]["License"]
+      end
+      
+      
+      # This API returns the number of licenses that were issued by the Commission on a yearly basis. 
+      #The data returned includes the year and the total number of licenses issued.
+      # @format :json
+      # @key false
+      # @param options [Hash] A customizable set of options:
+      # commonName - Name of the coporation
+      # @return [Array]
+      # @see http://reboot.fcc.gov/developer/license-view-api
+      # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
+      #   FccReboot.get_issued(:commonName=> 'Sprint Nextel')
+      def get_issued(options={})
+        options.merge!({:format => "json"})
+        response = get('license-view/licenses/getIssued', options)
+        JSON.parse(response)["Stats"]["Stat"]
       end
     end
   end
