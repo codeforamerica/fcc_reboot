@@ -42,3 +42,24 @@ describe FccReboot, ".census_block" do
   end
 end
 
+describe FccReboot, ".get_spectrum_bands" do
+  before do
+    stub_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getSpectrumBands').
+      with(:query => {:frequencyFrom=>'226', :frequencyTo => '900'}).
+      to_return(:body => fixture('get_spectrum_bands.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
+    a_request(:get, 'http://data.fcc.gov/api/spectrum-view/services/advancedSearch/getSpectrumBands').
+      with(:query => {:frequencyFrom=>'226', :frequencyTo => '900'}).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    services = FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
+    services.should be_a Array
+    services[0]["upperBand"].should == "235"
+  end
+end
+
