@@ -23,18 +23,15 @@ module FccReboot
         response = connection(raw).send(method) do |request|
           case method
           when :get, :delete
-            request.url(formatted_path(path), options)
+            request.url(path, options)
           when :post, :put
-            request.path = formatted_path(path)
+            request.path = path
             request.body = options unless options.empty?
           end
         end
         raw ? response : response.body
       end
 
-      def formatted_path(path)
-        [path, format].compact.join('.')
-      end
     end
   end
 end

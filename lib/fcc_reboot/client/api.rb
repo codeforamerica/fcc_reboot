@@ -4,6 +4,7 @@ require 'JSON'
 module FccReboot
   class Client
     module Api
+    include FccReboot::Client::Connection
       # speed test statistics for a US County given the passed Latitude and Longitude
       #
       # @format :json
@@ -18,7 +19,7 @@ module FccReboot
       def broadband_test(options={})
         options.merge!({:format => "json"})                
         response = get('speedtest/find', options)
-        JSON.parse(response)["SpeedTestCounty"]
+        response["SpeedTestCounty"]
       end
       
       # This API returns the US Census Bureau Census Block number (aka the 15 character FIPS Code) given 
@@ -37,7 +38,6 @@ module FccReboot
       def find_census_block(options={})
         options.merge!({:format => "json"})
         response = get('block/find', options)
-        JSON.parse(response)
       end
 
       # This API returns returns all the broadband providers in a given state, where those operators
@@ -56,7 +56,6 @@ module FccReboot
         options[:multi] = options[:multi] ? "Yes" : "No"
         options.merge!({:format => "json"})
         response = get('frn/getList', options)
-        JSON.parse(response)
       end
       
       # This API returns information about a provider by FRN number.
@@ -72,7 +71,6 @@ module FccReboot
       def frn_getinfo(options={})
         options.merge!({:format => "json"})
         response = get('frn/getInfo', options)
-        JSON.parse(response)
       end
       
       # This API accepts a frequency range and returns a list of the frequency bands 
@@ -94,7 +92,7 @@ module FccReboot
       def get_spectrum_bands(options={})
         options.merge!({:format => "json"})          
         response = get('spectrum-view/services/advancedSearch/getSpectrumBands', options)      
-        JSON.parse(response)["SpectrumBands"]["SpectrumBand"]        
+        response["SpectrumBands"]["SpectrumBand"]        
       end
       
       # This API returns a high level overview of who owns spectrum across the country 
@@ -116,7 +114,7 @@ module FccReboot
       def get_spectrum_licenses(options={})
         options.merge!({:format => "json"})
         response = get('spectrum-view/services/advancedSearch/getLicenses', options)
-        JSON.parse(response)["Licenses"]["License"]        
+        response["Licenses"]["License"]        
       end
       
       # his API returns high level license information including name, FRN, call sign, 
@@ -136,7 +134,7 @@ module FccReboot
       def get_licenses(options={})
         options.merge!({:format => "json"})        
         response = get('license-view/basicSearch/getLicenses', options)
-        JSON.parse(response)["Licenses"]["License"]
+        response["Licenses"]["License"]
       end
 
       # This API returns a list of currently known licensee names associated with a common name.
@@ -152,7 +150,7 @@ module FccReboot
       def get_common_names(options={})
         options.merge!({:format => "json"})        
         response = get('license-view/licenses/getCommonNames', options)
-        JSON.parse(response)['Stats']['Stat']
+        response['Stats']['Stat']
       end
       
       # This API returns the license counts and percent distribution by status.
@@ -168,7 +166,7 @@ module FccReboot
       def get_statuses(options={})
         options.merge!({:format => "json"})        
         response = get('license-view/licenses/getStatuses', options)
-        JSON.parse(response)['Stats']['Stat']
+        response['Stats']['Stat']
       end
 
       # This API returns the number of licenses that were issued by the Commission on a yearly basis. 
@@ -184,7 +182,7 @@ module FccReboot
       def get_issued(options={})
         options.merge!({:format => "json"})
         response = get('license-view/licenses/getIssued', options)
-        JSON.parse(response)["Stats"]["Stat"]
+        response["Stats"]["Stat"]
       end
       
       # This API returns the number of licenses up for renewal in a given month. The API returns 12 months worth of data.
@@ -199,7 +197,7 @@ module FccReboot
        def get_renewals(options={})
          options.merge!({:format => "json"})
          response = get('license-view/licenses/getRenewals', options)
-         JSON.parse(response)["Stats"]["Stat"]
+         response["Stats"]["Stat"]
        end
        
        # This API returns the counts and percent distribution of active licenses by entity type. 
@@ -214,7 +212,7 @@ module FccReboot
         def get_entities(options={})
           options.merge!({:format => "json"})
           response = get('license-view/licenses/getEntities', options)
-          JSON.parse(response)["Stats"]["Stat"]
+          response["Stats"]["Stat"]
         end
         
         # This API returns the counts and percent distribution of active licenses by category. A license falls into only one category.
@@ -229,7 +227,7 @@ module FccReboot
           def get_categories(options={})
             options.merge!({:format => "json"})
             response = get('license-view/licenses/getCategories', options)
-            JSON.parse(response)["Stats"]["Stat"]
+            response["Stats"]["Stat"]
           end
     end
   end
