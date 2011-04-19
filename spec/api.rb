@@ -1,5 +1,23 @@
 require 'helper'
 
+describe FccReboot do
+  after do
+    FccReboot.reset
+  end
+
+  describe ".respond_to?" do
+    it "should return true if method exists" do
+      FccReboot.respond_to?(:client, true).should be_true
+    end
+  end
+
+  describe ".client" do
+    it "should be a FccReboot::Client" do
+      FccReboot.client.should be_a FccReboot::Client
+    end
+  end
+end
+
 describe FccReboot, ".broadband_test" do
   before do
     stub_request(:get, 'http://data.fcc.gov/api/speedtest/find').
