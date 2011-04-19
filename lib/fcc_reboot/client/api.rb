@@ -91,8 +91,8 @@ module FccReboot
       #   FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
       def get_spectrum_bands(options={})
         options.merge!({:format => "json"})          
-        response = get('spectrum-view/services/advancedSearch/getSpectrumBands', options)      
-        response["SpectrumBands"]["SpectrumBand"]        
+        response = get('spectrum-view/services/advancedSearch/getSpectrumBands', options)  
+        response["SpectrumBands"]["SpectrumBand"] 
       end
       
       # This API returns a high level overview of who owns spectrum across the country 
@@ -229,6 +229,7 @@ module FccReboot
             response = get('license-view/licenses/getCategories', options)
             response["Stats"]["Stat"]
           end
+          
     end
   end
 end

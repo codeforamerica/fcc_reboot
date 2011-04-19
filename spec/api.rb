@@ -87,8 +87,8 @@ describe FccReboot, ".frn_getlist" do
 
   it "should return the correct results" do
     services = FccReboot.frn_getlist(:stateCode => 'IL', :multi => false)
-    services.should be_a Hash
-    services["Frns"]["Frn"].first["frn"].should == '0017855545'
+    services.should be_a Array
+    services.first["frn"].should == '0017855545'
   end
 end
 
@@ -109,7 +109,7 @@ describe FccReboot, ".frn_getinfo" do
   it "should return the correct results" do
     services = FccReboot.frn_getinfo(:frn => '0017855545')
     services.should be_a Hash
-    services["Info"]["frn"].should == '0017855545'
+    services["frn"].should == '0017855545'
   end
 end
 
@@ -158,9 +158,13 @@ end
 describe FccReboot, ".get_licenses" do
   before do
     @query = {:searchValue => 'Verizon%20Wireless', :format =>'json'}
+    @bad_query = {:searchValue => 'some name', :format =>'json'}
     stub_request(:get, 'http://data.fcc.gov/api/license-view/basicSearch/getLicenses').
       with(:query => @query).
       to_return(:body => fixture('license-view-get-licenses.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
+    stub_request(:get, 'http://data.fcc.gov/api/license-view/basicSearch/getLicenses').
+      with(:query => @bad_query).
+      to_return(:body => fixture('license-view-get-licenses-error.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
   end
 
   it "should request the correct resource" do
@@ -174,6 +178,12 @@ describe FccReboot, ".get_licenses" do
     licenses = FccReboot.get_licenses(@query)
     licenses.should be_a Array
     licenses[0]["licenseID"].should == '2300007967'
+  end
+  
+  it "should return the correct results" do
+    licenses = FccReboot.get_licenses(@bad_query)
+    licenses.should be_a Hash
+    licenses["Errors"]["Err"][0]["code"].should == '110'
   end
 end
 
