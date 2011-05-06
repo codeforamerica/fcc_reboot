@@ -8,7 +8,7 @@ Add it to the [apps](http://github.com/cfalabs/fcc_reboot/wiki/apps) wiki!
 
 Installation
 ------------
-    $ [sudo] gem install fcc_reboot
+    gem install fcc_reboot
 
 Usage Examples
 --------------
