@@ -13,37 +13,37 @@ Installation
 Usage Examples
 --------------
     require 'fcc_reboot'
-        
+
     # Provide speed test statistics for a US County given the passed Latitude and Longitude
     FccReboot.broadband_test(:latitude => '38.0', :longitude => '-77.5')
-    
-    # Returns a list of the frequency bands 
+
+    # Returns a list of the frequency bands
     FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
-    
+
     # Provide high level overview of who owns spectrum across the country within the 225 MHz to 3700 MHz frequency
     FccReboot.get_spectrum_licenses(:name=> 'AT', :radioservice=>'Cellular')
-    
+
     # Provide census block info for the given latitude and longitude
     FccReboot.find_census_block(:latitude => '38.0', :longitude => '-77.5')
-    
+
     # Provide FRN list for the state of Illinois
     FccReboot.frn_getlist(:stateCode => 'IL', :multi => 'No')
-    
+
     # Provide FRN info for Cygnus Telecommunications Corporation (FRN number 0017855545)
     FccReboot.find_census_block(:frn => '0017855545')
-    
+
     # Returns the number of licenses up for renewal in a given month for Sprint Nextel.
     FccReboot.get_issued(:commonName=> 'Sprint Nextel')
-    
+
     # Returns the counts and percent distribution of active licenses by entity type
     FccReboot.get_renewals()
-    
+
     # Provide number of licenses that were issued by the Commission on a yearly basis
     FccReboot.get_licenses(:searchValue => 'Verizon Wireless')
-    
+
     # Returns the license counts and percent distribution by status.
     FccReboot.get_statuses(:commonName => 'Sprint Nextel')
-    
+
 Contributing
 ------------
 In the spirit of [free software](http://www.fsf.org/licensing/essays/free-sw.html), **everyone** is encouraged to help improve this project.
@@ -84,4 +84,4 @@ Submitting a Pull Request
 Copyright
 ---------
 Copyright (c) 2010 Code for America Laboratories
-See [LICENSE](https://github.com/cfalabs/fcc_reboot/blob/master/LICENSE.mkd) for details.
+See [LICENSE](https://github.com/cfalabs/fcc_reboot/blob/master/LICENSE.md) for details.
