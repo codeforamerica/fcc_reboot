@@ -20,19 +20,18 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency('ZenTest', '~> 4.5')
+  s.add_development_dependency('json', '~>1.5.1')
   s.add_development_dependency('maruku', '~> 0.6')
+  s.add_development_dependency('nokogiri', '~> 1.4')
   s.add_development_dependency('rake', '~> 0.8')
   s.add_development_dependency('rspec', '~> 2.5')
   s.add_development_dependency('simplecov', '~> 0.4')
-  s.add_development_dependency('yard', '~> 0.6')
-  s.add_development_dependency('nokogiri', '~> 1.4')
   s.add_development_dependency('webmock', '~> 1.5')
+  s.add_development_dependency('yard', '~> 0.6')
 
   s.add_runtime_dependency('hashie', '~> 1.0.0')
   s.add_runtime_dependency('faraday', '~> 0.6.0')
   s.add_runtime_dependency('faraday_middleware', '~> 0.6.0')
   s.add_runtime_dependency('multi_json', '~> 1.0.0')
   s.add_runtime_dependency('multi_xml', '~> 0.2.0')
-
-  s.add_dependency('json', '~>1.5.1')
 end
