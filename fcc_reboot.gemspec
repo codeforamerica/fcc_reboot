@@ -23,7 +23,6 @@ Gem::Specification.new do |gem|
   gem.files = `git ls-files`.split("\n")
   gem.homepage = 'https://github.com/codeforamerica/fcc_reboot'
   gem.name = 'fcc_reboot'
-  gem.platform = Gem::Platform::RUBY
   gem.require_paths = ['lib']
   gem.required_rubygems_version = Gem::Requirement.new('>= 1.3.6')
   gem.summary = %q{FCC API Wrapper}
