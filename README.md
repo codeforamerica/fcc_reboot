@@ -44,6 +44,10 @@ Usage Examples
     # Returns the license counts and percent distribution by status.
     FccReboot.get_statuses(:commonName => 'Sprint Nextel')
 
+Tracking
+----------------------
+[![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/fcc_reboot.png)](http://stats.codeforamerica.org/projects/fcc_reboot)
+
 Contributing
 ------------
 In the spirit of [free software](http://www.fsf.org/licensing/essays/free-sw.html), **everyone** is encouraged to help improve this project.
