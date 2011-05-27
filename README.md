@@ -89,3 +89,5 @@ Copyright
 ---------
 Copyright (c) 2010 Code for America Laboratories
 See [LICENSE](https://github.com/cfalabs/fcc_reboot/blob/master/LICENSE.md) for details.
+
+[![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/fcc_reboot.png)](http://stats.codeforamerica.org/projects/fcc_reboot)
