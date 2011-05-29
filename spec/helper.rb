@@ -1,14 +1,10 @@
+$:.unshift File.expand_path('..', __FILE__)
+$:.unshift File.expand_path('../../lib', __FILE__)
 require 'simplecov'
 SimpleCov.start
-require File.expand_path('../../lib/fcc_reboot', __FILE__)
+require 'fcc_reboot'
 require 'rspec'
 require 'webmock/rspec'
-
-require 'fcc_reboot'
-
-RSpec.configure do |config|
-  config.include WebMock::API
-end
 
 def fixture_path
   File.expand_path("../fixtures", __FILE__)
