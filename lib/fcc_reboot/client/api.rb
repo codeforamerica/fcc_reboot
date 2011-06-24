@@ -3,7 +3,7 @@
 module FccReboot
   class Client
     module Api
-    include FccReboot::Client::Connection
+      include FccReboot::Client::Connection
       # speed test statistics for a US County given the passed Latitude and Longitude
       #
       # @format :json
@@ -169,7 +169,7 @@ module FccReboot
       end
 
       # This API returns the number of licenses that were issued by the Commission on a yearly basis.
-      #The data returned includes the year and the total number of licenses issued.
+      # The data returned includes the year and the total number of licenses issued.
       # @format :json
       # @key false
       # @param options [Hash] A customizable set of options:
@@ -185,50 +185,49 @@ module FccReboot
       end
 
       # This API returns the number of licenses up for renewal in a given month. The API returns 12 months worth of data.
-       # @format :json
-       # @key false
-       # @param options [Hash] A customizable set of options:
-       # @param commonName - Name of the coporation
-       # @return [Array]
-       # @see http://reboot.fcc.gov/developer/license-view-api
-       # @example Returns the number of licenses up for renewal in a given month. The API returns 12 months worth of data for Sprint Nextel.
-       #   FccReboot.get_renewals(:commonName=> 'Sprint Nextel')
-       def get_renewals(options={})
-         options.merge!({:format => "json"})
-         response = get('license-view/licenses/getRenewals', options)
-         response["Errors"] ? response : response["Stats"]["Stat"]
-       end
+      # @format :json
+      # @key false
+      # @param options [Hash] A customizable set of options:
+      # @param commonName - Name of the coporation
+      # @return [Array]
+      # @see http://reboot.fcc.gov/developer/license-view-api
+      # @example Returns the number of licenses up for renewal in a given month. The API returns 12 months worth of data for Sprint Nextel.
+      #   FccReboot.get_renewals(:commonName=> 'Sprint Nextel')
+      def get_renewals(options={})
+        options.merge!({:format => "json"})
+        response = get('license-view/licenses/getRenewals', options)
+        response["Errors"] ? response : response["Stats"]["Stat"]
+      end
 
-       # This API returns the counts and percent distribution of active licenses by entity type.
-       # There are four entity categories: Individual, Business, Government and Other.
-        # @format :json
-        # @key false
-        # @param options [Hash] A customizable set of options:
-        # @return [Array]
-        # @see http://reboot.fcc.gov/developer/license-view-api
-        # @example Returns the counts and percent distribution of active licenses by entity type
-        #   FccReboot.get_renewals()
-        def get_entities(options={})
-          options.merge!({:format => "json"})
-          response = get('license-view/licenses/getEntities', options)
-          response["Errors"] ? response : response["Stats"]["Stat"]
-        end
+      # This API returns the counts and percent distribution of active licenses by entity type.
+      # There are four entity categories: Individual, Business, Government and Other.
+      # @format :json
+      # @key false
+      # @param options [Hash] A customizable set of options:
+      # @return [Array]
+      # @see http://reboot.fcc.gov/developer/license-view-api
+      # @example Returns the counts and percent distribution of active licenses by entity type
+      #   FccReboot.get_renewals()
+      def get_entities(options={})
+        options.merge!({:format => "json"})
+        response = get('license-view/licenses/getEntities', options)
+        response["Errors"] ? response : response["Stats"]["Stat"]
+      end
 
-        # This API returns the counts and percent distribution of active licenses by category. A license falls into only one category.
-         # There are four entity categories: Individual, Business, Government and Other.
-          # @format :json
-          # @key false
-          # @param options [Hash] A customizable set of options:
-          # @return [Array]
-          # @see http://reboot.fcc.gov/developer/license-view-api
-          # @example Returns the counts and percent distribution of active licenses by category
-          #   FccReboot.get_categories()
-          def get_categories(options={})
-            options.merge!({:format => "json"})
-            response = get('license-view/licenses/getCategories', options)
-            response["Errors"] ? response : response["Stats"]["Stat"]
-          end
-
+      # This API returns the counts and percent distribution of active licenses by category. A license falls into only one category.
+      # There are four entity categories: Individual, Business, Government and Other.
+      # @format :json
+      # @key false
+      # @param options [Hash] A customizable set of options:
+      # @return [Array]
+      # @see http://reboot.fcc.gov/developer/license-view-api
+      # @example Returns the counts and percent distribution of active licenses by category
+      #   FccReboot.get_categories()
+      def get_categories(options={})
+        options.merge!({:format => "json"})
+        response = get('license-view/licenses/getCategories', options)
+        response["Errors"] ? response : response["Stats"]["Stat"]
+      end
     end
   end
 end
