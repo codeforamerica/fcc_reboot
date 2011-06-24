@@ -77,7 +77,7 @@ describe FccReboot, ".frn_getlist" do
       with(:query => {:format => 'json', :stateCode => 'IL', :multi => 'Yes'}).
       should have_been_made
   end
-  
+
   it "should request the correct resource" do
     FccReboot.frn_getlist(:stateCode => 'IL', :multi => false)
     a_request(:get, 'http://data.fcc.gov/api/frn/getList').
@@ -105,7 +105,7 @@ describe FccReboot, ".frn_getinfo" do
       with(:query => {:format => 'json', :frn => '0017855545'}).
       should have_been_made
   end
-  
+
   it "should return the correct results" do
     services = FccReboot.frn_getinfo(:frn => '0017855545')
     services.should be_a Hash
@@ -179,7 +179,7 @@ describe FccReboot, ".get_licenses" do
     licenses.should be_a Array
     licenses[0]["licenseID"].should == '2300007967'
   end
-  
+
   it "should return the correct results" do
     licenses = FccReboot.get_licenses(@bad_query)
     licenses.should be_a Hash

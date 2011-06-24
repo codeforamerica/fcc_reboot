@@ -17,20 +17,20 @@ module FccReboot
       # @example Provide speed test statistics for a US County given the passed Latitude and Longitude
       #   FccReboot.broadband_test(:latitude => '38.0', :longitude => '-77.5')
       def broadband_test(options={})
-        options.merge!({:format => "json"})                
+        options.merge!({:format => "json"})
         response = get('speedtest/find', options)
         response["Errors"] ? response : response["SpeedTestCounty"]
       end
-      
-      # This API returns the US Census Bureau Census Block number (aka the 15 character FIPS Code) given 
-      # a passed Latitude and Longitude. The API also returns the US State and County name associated with 
+
+      # This API returns the US Census Bureau Census Block number (aka the 15 character FIPS Code) given
+      # a passed Latitude and Longitude. The API also returns the US State and County name associated with
       # the Block.
       #
       # @format :json
       # @key false
       # @param options [Hash] A customizable set of options.
       # @param latitude
-      # @param longitutde      
+      # @param longitutde
       # @return [Hash]
       # @see http://reboot.fcc.gov/developer/census-block-conversions-api
       # @example Provide census block info for the given latitude and longitude
@@ -46,8 +46,8 @@ module FccReboot
       # @format :json
       # @key false
       # @param options [Hash] A customizable set of options.
-      # @param stateCode 
-      # @param multi      
+      # @param stateCode
+      # @param multi
       # @return [Hash]
       # @see http://reboot.fcc.gov/developer/frn-conversions-api
       # @example Provide FRN list for the state of Illinois
@@ -57,13 +57,13 @@ module FccReboot
         options.merge!({:format => "json"})
         response = get('frn/getList', options)
       end
-      
+
       # This API returns information about a provider by FRN number.
       #
       # @format :json
       # @key false
       # @param options [Hash] A customizable set of options.
-      # @param frn       
+      # @param frn
       # @return [Hash]
       # @see http://reboot.fcc.gov/developer/frn-conversions-api
       # @example Provide FRN info for Cygnus Telecommunications Corporation (FRN number 0017855545)
@@ -72,8 +72,8 @@ module FccReboot
         options.merge!({:format => "json"})
         response = get('frn/getInfo', options)
       end
-      
-      # This API accepts a frequency range and returns a list of the frequency bands 
+
+      # This API accepts a frequency range and returns a list of the frequency bands
       # along with a high level description of how the band is allocated and for what uses within the 225 MHz and 3700 MHz frequency range.
       # @format :json
       # @key false
@@ -87,17 +87,17 @@ module FccReboot
       # @param limit (Optional) – Default value is 100.
       # @return [Array]
       # @see http://reboot.fcc.gov/developer/spectrum-dashboard-api
-      # @example Returns a list of the frequency bands 
+      # @example Returns a list of the frequency bands
       #   FccReboot.get_spectrum_bands(:frequencyFrom=>'226', :frequencyTo => '900')
       def get_spectrum_bands(options={})
-        options.merge!({:format => "json"})          
-        response = get('spectrum-view/services/advancedSearch/getSpectrumBands', options)  
-        response["Errors"] ? response : response["SpectrumBands"]["SpectrumBand"] 
+        options.merge!({:format => "json"})
+        response = get('spectrum-view/services/advancedSearch/getSpectrumBands', options)
+        response["Errors"] ? response : response["SpectrumBands"]["SpectrumBand"]
       end
-      
-      # This API returns a high level overview of who owns spectrum across the country 
-      # within the 225 MHz to 3700 MHz frequency range in radio services deemed appropriate for 
-      # mobile broadband use. 
+
+      # This API returns a high level overview of who owns spectrum across the country
+      # within the 225 MHz to 3700 MHz frequency range in radio services deemed appropriate for
+      # mobile broadband use.
       # @format :json
       # @key false
       # @param options [Hash] A customizable set of options:
@@ -114,11 +114,11 @@ module FccReboot
       def get_spectrum_licenses(options={})
         options.merge!({:format => "json"})
         response = get('spectrum-view/services/advancedSearch/getLicenses', options)
-        response["Errors"] ? response : response["Licenses"]["License"]        
+        response["Errors"] ? response : response["Licenses"]["License"]
       end
-      
-      # his API returns high level license information including name, FRN, call sign, 
-      # category, service, status, expiration date and license id, based on the search criteria passed. 
+
+      # his API returns high level license information including name, FRN, call sign,
+      # category, service, status, expiration date and license id, based on the search criteria passed.
       # @format :json
       # @key false
       # @param options [Hash] A customizable set of options:
@@ -132,7 +132,7 @@ module FccReboot
       # @example Provide number of licenses that were issued by the Commission on a yearly basis
       #   FccReboot.get_licenses(:searchValue => 'Verizon Wireless')
       def get_licenses(options={})
-        options.merge!({:format => "json"})        
+        options.merge!({:format => "json"})
         response = get('license-view/basicSearch/getLicenses', options)
         response["Errors"] ? response : response["Licenses"]["License"]
       end
@@ -148,11 +148,11 @@ module FccReboot
       # @example Returns a list of currently known licensee names associated with a common name.
       #   FccReboot.get_common_names(:commonName => 'Sprint Nextel')
       def get_common_names(options={})
-        options.merge!({:format => "json"})        
+        options.merge!({:format => "json"})
         response = get('license-view/licenses/getCommonNames', options)
         response["Errors"] ? response : response['Stats']['Stat']
       end
-      
+
       # This API returns the license counts and percent distribution by status.
       # @format :json
       # @key false
@@ -164,12 +164,12 @@ module FccReboot
       # @example Returns the license counts and percent distribution by status.
       #   FccReboot.get_statuses(:commonName => 'Sprint Nextel')
       def get_statuses(options={})
-        options.merge!({:format => "json"})        
+        options.merge!({:format => "json"})
         response = get('license-view/licenses/getStatuses', options)
         response["Errors"] ? response : response['Stats']['Stat']
       end
 
-      # This API returns the number of licenses that were issued by the Commission on a yearly basis. 
+      # This API returns the number of licenses that were issued by the Commission on a yearly basis.
       #The data returned includes the year and the total number of licenses issued.
       # @format :json
       # @key false
@@ -184,7 +184,7 @@ module FccReboot
         response = get('license-view/licenses/getIssued', options)
         response["Errors"] ? response : response["Stats"]["Stat"]
       end
-      
+
       # This API returns the number of licenses up for renewal in a given month. The API returns 12 months worth of data.
        # @format :json
        # @key false
@@ -199,8 +199,8 @@ module FccReboot
          response = get('license-view/licenses/getRenewals', options)
          response["Errors"] ? response : response["Stats"]["Stat"]
        end
-       
-       # This API returns the counts and percent distribution of active licenses by entity type. 
+
+       # This API returns the counts and percent distribution of active licenses by entity type.
        # There are four entity categories: Individual, Business, Government and Other.
         # @format :json
         # @key false
@@ -214,7 +214,7 @@ module FccReboot
           response = get('license-view/licenses/getEntities', options)
           response["Errors"] ? response : response["Stats"]["Stat"]
         end
-        
+
         # This API returns the counts and percent distribution of active licenses by category. A license falls into only one category.
          # There are four entity categories: Individual, Business, Government and Other.
           # @format :json
@@ -229,7 +229,7 @@ module FccReboot
             response = get('license-view/licenses/getCategories', options)
             response["Errors"] ? response : response["Stats"]["Stat"]
           end
-          
+
     end
   end
 end
