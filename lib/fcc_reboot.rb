@@ -1,51 +1,25 @@
-require ::File.expand_path('../fcc_reboot/version', __FILE__)
-require ::File.expand_path('../fcc_reboot/configuration.rb', __FILE__)
-require ::File.expand_path('../fcc_reboot/client', __FILE__)
+require 'fcc_reboot/configuration'
+require 'fcc_reboot/client'
+require 'fcc_reboot/version'
 
 module FccReboot
   extend Configuration
+  class << self
+    # Alias for FccReboot::Client.new
+    #
+    # @return [FccReboot::Client]
+    def client(options={})
+      FccReboot::Client.new(options)
+    end
 
-  # Alias for FccReboot::Client.new
-  #
-  # @return [FccReboot::Client]
-  def self.client(options={})
-    FccReboot::Client.new(options)
+    # Delegate to FccReboot::Client
+    def method_missing(method, *args, &block)
+      return super unless client.respond_to?(method)
+      client.send(method, *args, &block)
+    end
+
+    def respond_to?(method, include_private=false)
+      client.respond_to?(method, include_private) || super(method, include_private)
+    end
   end
-
-  # Delegate to FccReboot::Client
-  def self.method_missing(method, *args, &block)
-    return super unless client.respond_to?(method)
-    client.send(method, *args, &block)
-  end
-  
-  def self.respond_to?(method, include_private=false)
-    client.respond_to?(method, include_private) || super(method, include_private)
-  end
-
-  # Custom error class for rescuing from all FccReboot errors
-  class Error < StandardError; end
-
-  # Raised when FccReboot returns a 400 HTTP status code
-  class BadRequest < Error; end
-
-  # Raised when FccReboot returns a 401 HTTP status code
-  class Unauthorized < Error; end
-
-  # Raised when FccReboot returns a 403 HTTP status code
-  class Forbidden < Error; end
-
-  # Raised when FccReboot returns a 404 HTTP status code
-  class NotFound < Error; end
-
-  # Raised when FccReboot returns a 406 HTTP status code
-  class NotAcceptable < Error; end
-
-  # Raised when FccReboot returns a 500 HTTP status code
-  class InternalServerError < Error; end
-
-  # Raised when FccReboot returns a 502 HTTP status code
-  class BadGateway < Error; end
-
-  # Raised when FccReboot returns a 503 HTTP status code
-  class ServiceUnavailable < Error; end
 end
