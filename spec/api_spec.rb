@@ -7,13 +7,13 @@ describe FccReboot do
 
   describe ".respond_to?" do
     it "should return true if method exists" do
-      FccReboot.respond_to?(:client, true).should be_true
+      FccReboot.respond_to?(:new, true).should be_true
     end
   end
 
-  describe ".client" do
+  describe ".new" do
     it "should be a FccReboot::Client" do
-      FccReboot.client.should be_a FccReboot::Client
+      FccReboot.new.should be_a FccReboot::Client
     end
   end
 end
