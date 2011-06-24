@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-require 'json'
 
 module FccReboot
   class Client
