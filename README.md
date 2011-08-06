@@ -6,6 +6,11 @@ Does your project or organization use this gem?
 ------------------------------------------
 Add it to the [apps](https://github.com/cfalabs/fcc_reboot/wiki/apps) wiki!
 
+
+Continuous Integration
+----------------------
+[![Build Status](https://secure.travis-ci.org/codeforamerica/fcc_reboot.png)](http://travis-ci.org/codeforamerica/fcc_reboot)
+
 Installation
 ------------
     gem install fcc_reboot
