@@ -55,11 +55,11 @@ Here are some ways *you* can contribute:
 * by writing specifications
 * by writing code (**no patch is too small**: fix typos, add comments, clean up inconsistent whitespace)
 * by refactoring code
-* by resolving [issues](https://github.com/cfalabs/fcc_reboot/issues)
+* by resolving [issues](https://github.com/codeforamerica/fcc_reboot/issues)
 * by reviewing patches
 
 ## <a name="issues">Submitting an Issue</a>
-We use the [GitHub issue tracker](https://github.com/cfalabs/fcc_reboot/issues) to track bugs and
+We use the [GitHub issue tracker](https://github.com/codeforamerica/fcc_reboot/issues) to track bugs and
 features. Before submitting a bug report or feature request, check to make sure it hasn't already
 been submitted. You can indicate support for an existing issuse by voting it up. When submitting a
 bug report, please include a [Gist](https://gist.github.com/) that includes a stack trace and any
@@ -83,8 +83,8 @@ against](http://travis-ci.org/codeforamerica/fcc_reboot) the following Ruby
 implementations:
 
 * Ruby 1.8.7
-* Ruby 1.9.1
 * Ruby 1.9.2
+* Ruby 1.9.3
 * [JRuby](http://www.jruby.org/)
 * [Rubinius](http://rubini.us/)
 * [Ruby Enterprise Edition](http://www.rubyenterpriseedition.com/)
@@ -105,6 +105,6 @@ time of a major release, support for that Ruby version may be dropped.
 
 ## <a name="copyright">Copyright</a>
 Copyright (c) 2010 Code for America Laboratories
-See [LICENSE](https://github.com/cfalabs/fcc_reboot/blob/master/LICENSE.md) for details.
+See [LICENSE](https://github.com/codeforamerica/fcc_reboot/blob/master/LICENSE.md) for details.
 
 [![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/fcc_reboot.png)](http://stats.codeforamerica.org/projects/fcc_reboot)
