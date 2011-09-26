@@ -6,8 +6,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'faraday_middleware', '~> 0.7.0'
   gem.add_dependency 'hashie', '~> 1.1.0'
   gem.add_dependency 'multi_json', '~> 1.0.0'
-  gem.add_dependency 'multi_xml', '~> 0.2.0'
-  gem.add_development_dependency 'nokogiri', '~> 1.4'
   gem.add_development_dependency 'rake', '~> 0.9'
   gem.add_development_dependency 'rdiscount', '~> 1.6'
   gem.add_development_dependency 'rspec', '~> 2.6'
