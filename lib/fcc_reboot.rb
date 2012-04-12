@@ -1,6 +1,5 @@
 require 'fcc_reboot/configuration'
 require 'fcc_reboot/client'
-require 'fcc_reboot/version'
 
 module FccReboot
   extend Configuration
