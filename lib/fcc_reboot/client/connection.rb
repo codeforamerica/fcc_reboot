@@ -11,7 +11,6 @@ module FccReboot
         options = {
           #:headers => {'Accept' => "*/#{format}", 'User-Agent' => user_agent},
           :headers => {'Accept' => 'application/json'},
-          :proxy => proxy,
           :ssl => {:verify => false},
           :url => 'http://data.fcc.gov/api/' + endpoint.to_s
         }

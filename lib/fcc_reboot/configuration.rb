@@ -7,7 +7,6 @@ module FccReboot
       :adapter,
       :endpoint,
       :user_agent,
-      :proxy,
       :format].freeze
 
     VALID_FORMATS = [
@@ -16,7 +15,6 @@ module FccReboot
 
     DEFAULT_ADAPTER      = Faraday.default_adapter
     DEFAULT_ENDPOINT     = nil
-    DEFAULT_PROXY        = nil
     DEFAULT_FORMAT       = :json
     DEFAULT_USER_AGENT   = "FccReboot Ruby Gem #{FccReboot::VERSION}".freeze
 
@@ -39,7 +37,6 @@ module FccReboot
       self.user_agent   = DEFAULT_USER_AGENT
       self.endpoint     = DEFAULT_ENDPOINT
       self.format       = DEFAULT_FORMAT
-      self.proxy        = DEFAULT_FORMAT
     end
   end
 end
