@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'simplecov'
   gem.add_development_dependency 'webmock'
   gem.add_development_dependency 'yard'
-  gem.authors = ["Dan Melton", "Javier Muniz"]
+  gem.authors = ["Dan Melton", "Javier Muniz", "Ryan Resella"]
   gem.description = %q{Wrapper for FCC API}
   gem.email = 'info@codeforamerica.org'
   gem.files = `git ls-files`.split("\n")
