@@ -10,6 +10,12 @@ Add it to the [apps](https://github.com/cfalabs/fcc_reboot/wiki/apps) wiki!
 ## <a name="installation">Installation</a>
     gem install fcc_reboot
 
+## Read the FCC API Docs
+1. [Spectrum Dashboard](http://www.fcc.gov/developer/spectrum-dashboard-api)
+2. [License View](http://www.fcc.gov/developer/license-view-api)
+3. [Census Block](http://www.fcc.gov/developer/census-block-conversions-api)
+4. [FCC Registration Number Conversions](http://www.fcc.gov/developer/frn-conversions-api)
+
 ## <a name="examples">Usage Examples</a>
     require 'fcc_reboot'
 
