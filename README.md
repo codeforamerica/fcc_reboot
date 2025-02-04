@@ -4,7 +4,7 @@ A Ruby wrapper for the FCC Reboot APIs.
 [travis]: http://travis-ci.org/codeforamerica/fcc_reboot
 
 ## Does your project or organization use this gem?
-Add it to the [apps](https://github.com/cfalabs/fcc_reboot/wiki/apps) wiki!
+Add it to the [apps](https://github.com/codeforamerica/fcc_reboot/wiki/apps) wiki!
 
 ## Installation
     gem install fcc_reboot
